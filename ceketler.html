@@ -8,50 +8,49 @@
         :root { --gold: #c5a059; --dark: #121212; }
         body { font-family: 'Poppins', sans-serif; margin: 0; background: #f4f4f4; color: var(--dark); }
         
-        /* Navigation Simple */
         nav { background: var(--dark); padding: 15px; text-align: center; }
-        .back-btn { color: var(--gold); text-decoration: none; font-weight: bold; font-size: 0.9rem; border: 1px solid var(--gold); padding: 5px 15px; }
+        .back-btn { color: var(--gold); text-decoration: none; font-weight: bold; font-size: 0.9rem; border: 1px solid var(--gold); padding: 5px 15px; text-transform: uppercase; }
 
         .header-title { text-align: center; padding: 40px 20px; background: white; margin-bottom: 30px; }
-        .header-title h1 { margin: 0; font-size: 2rem; border-bottom: 2px solid var(--gold); display: inline-block; }
+        .header-title h1 { margin: 0; font-size: 2rem; border-bottom: 2px solid var(--gold); display: inline-block; text-transform: uppercase; }
 
         .container { max-width: 1200px; margin: auto; padding: 0 15px; }
 
-        /* Products Grid */
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .product-card { background: white; border: 1px solid #ddd; overflow: hidden; transition: 0.3s; }
         
         /* Gallery System (Swipe) */
         .image-gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; background: #eee; }
-        .image-gallery img { flex: 0 0 100%; scroll-snap-align: start; height: 450px; object-fit: cover; }
+        .image-gallery img { flex: 0 0 100%; scroll-snap-align: start; height: 500px; object-fit: cover; }
         .image-gallery::-webkit-scrollbar { display: none; }
 
-        .product-info { padding: 20px; text-align: center; }
-        .product-name { font-size: 1.2rem; font-weight: 600; margin: 10px 0; }
-        .beden { color: #666; font-size: 0.9rem; margin-bottom: 10px; }
-        .price { font-size: 1.5rem; font-weight: bold; color: #000; margin-bottom: 15px; }
+        .product-info { padding: 25px; text-align: center; }
+        .product-name { font-size: 1.4rem; font-weight: 700; margin: 10px 0; text-transform: uppercase; }
+        .description { color: #c5a059; font-weight: bold; margin-bottom: 10px; font-size: 1.1rem; }
+        .beden { color: #666; font-size: 1rem; margin-bottom: 15px; }
+        .price { font-size: 1.8rem; font-weight: 800; color: #000; margin-bottom: 20px; }
 
         .whatsapp-btn { 
             display: block; background: var(--dark); color: var(--gold); 
-            text-decoration: none; padding: 12px; border: 1px solid var(--gold);
-            font-weight: bold; text-transform: uppercase;
+            text-decoration: none; padding: 15px; border: 1px solid var(--gold);
+            font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
         }
         .whatsapp-btn:hover { background: var(--gold); color: white; }
         
-        .swipe-info { font-size: 0.7rem; color: #aaa; margin: 5px 0; }
+        .swipe-info { font-size: 0.8rem; color: #aaa; margin: 8px 0; font-style: italic; }
 
-        footer { text-align: center; padding: 40px; color: #888; font-size: 0.8rem; }
+        footer { text-align: center; padding: 40px; color: #888; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="index.html" class="back-btn">← ANA SAYFA (الرئيسية)</a>
+        <a href="index.html" class="back-btn">← ANA SAYFA</a>
     </nav>
 
     <div class="header-title">
         <h1>Kadın Ceket Koleksiyonu</h1>
-        <p>İstanbul'un en şık tasarımları</p>
+        <p>Premium İstanbul Tasarımları</p>
     </div>
 
     <div class="container">
@@ -59,15 +58,23 @@
 
             <div class="product-card">
                 <div class="image-gallery">
-                    <img src="https://i.ibb.co/sdSHBbsP/9-76.jpg" alt="Ceket 1">
-                    <img src="https://i.ibb.co/jvjV9bRd/9-75.jpg" alt="Ceket 1 detay">
+                    <img src="https://i.ibb.co/7JDZ4h25/4-166.jpg" alt="Takım Model 1">
+                    <img src="https://i.ibb.co/8GgV1vx/4-169.jpg" alt="Takım Model 2">
+                    <img src="https://i.ibb.co/whx3jpCK/4-168.jpg" alt="Takım Model 3">
+                    <img src="https://i.ibb.co/r2r4Ttk4/4-167.jpg" alt="Takım Model 4">
+                    <img src="https://i.ibb.co/Q7MMTdb3/4-170.jpg" alt="Takım Model 5">
                 </div>
-                <div class="swipe-info">← Kaydırın (جر بصباعك) →</div>
+                <div class="swipe-info">← Fotoğraflar için kaydırın →</div>
+                
                 <div class="product-info">
-                    <h3 class="product-name">Klasik Blazer Ceket</h3>
-                    <p class="beden">Beden: S - M - L - XL</p>
+                    <h3 class="product-name">Şık Ceket & Pantolon Takım</h3>
+                    <div class="description">Özel Tasarım - İkili Takım</div>
+                    <p class="beden"><b>Bedenler:</b> S - M - L - XL</p>
                     <div class="price">2.415 TL</div>
-                    <a href="https://wa.me/905537853944?text=Merhaba, Blazer Ceket siparişi vermek istiyorum." class="whatsapp-btn">Sipariş Ver</a>
+                    
+                    <a href="https://wa.me/905537853944?text=Merhaba, Ceket ve Pantolon Takımı (S-M-L-XL) hakkında bilgi almak istiyorum." class="whatsapp-btn">
+                        WhatsApp İle Sipariş Ver
+                    </a>
                 </div>
             </div>
             </div>
