@@ -3,39 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ceket Koleksiyonu | White Diamond</title>
+    <title>White Diamond | Ceket Koleksiyonu</title>
     <style>
         :root { --gold: #c5a059; --dark: #121212; }
-        body { font-family: 'Poppins', sans-serif; margin: 0; background: #f9f9f9; }
-        
-        nav { background: var(--dark); padding: 15px; text-align: center; position: sticky; top: 0; z-index: 1000; }
-        .back-btn { color: var(--gold); text-decoration: none; font-weight: bold; border: 1px solid var(--gold); padding: 5px 12px; font-size: 0.8rem; }
-
-        /* Grid: 2 Modeller per row */
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: #f9f9f9; -webkit-tap-highlight-color: transparent; }
+        nav { background: var(--dark); padding: 15px; text-align: center; position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid var(--gold); }
+        .back-btn { color: var(--gold); text-decoration: none; font-weight: bold; border: 1px solid var(--gold); padding: 5px 12px; font-size: 0.8rem; text-transform: uppercase; }
         .container { padding: 10px; }
         .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        
+        /* Mini Card */
+        .mini-card { background: white; border: 1px solid #eee; text-align: center; cursor: pointer; padding-bottom: 10px; transition: 0.3s; }
+        .mini-card:active { transform: scale(0.98); }
+        .mini-card img { width: 100%; height: 260px; object-fit: cover; }
+        .mini-card h3 { font-size: 0.75rem; margin: 10px 5px 2px; text-transform: uppercase; font-weight: 700; height: 32px; overflow: hidden; }
+        .mini-card .sku { font-size: 0.65rem; color: #999; display: block; margin-bottom: 5px; }
+        .mini-card .price { font-size: 1rem; font-weight: 900; color: #000; }
 
-        /* Small Card Styles */
-        .mini-card { background: white; border: 1px solid #eee; text-align: center; cursor: pointer; padding-bottom: 10px; }
-        .mini-card img { width: 100%; height: 250px; object-fit: cover; }
-        .mini-card h3 { font-size: 0.8rem; margin: 10px 5px 5px; text-transform: uppercase; }
-        .mini-card .price { font-size: 0.9rem; font-weight: bold; color: var(--gold); }
-
-        /* Modal (The Pop-up Window) */
+        /* Modal Pop-up */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); overflow-y: auto; }
-        .modal-content { background: white; width: 95%; max-width: 500px; margin: 50px auto; position: relative; padding-bottom: 20px; }
-        .close-modal { position: absolute; top: -40px; right: 10px; color: white; font-size: 30px; cursor: pointer; }
+        .modal-content { background: white; width: 95%; max-width: 500px; margin: 40px auto; position: relative; border-radius: 4px; overflow: hidden; }
+        .close-modal { position: absolute; top: 10px; right: 15px; color: #000; font-size: 35px; cursor: pointer; z-index: 2100; background: rgba(255,255,255,0.8); width: 40px; height: 40px; border-radius: 50%; text-align: center; line-height: 35px; }
 
-        /* Gallery in Modal */
-        .gallery-container { position: relative; width: 100%; height: 450px; overflow: hidden; }
+        /* Slider */
+        .gallery-container { position: relative; width: 100%; height: 500px; overflow: hidden; background: #f0f0f0; }
         .image-gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; height: 100%; scroll-behavior: smooth; }
-        .image-gallery img { flex: 0 0 100%; width: 100%; object-fit: cover; }
+        .image-gallery img { flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; scroll-snap-align: start; }
         .image-gallery::-webkit-scrollbar { display: none; }
-        .arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.7); border: none; padding: 10px; cursor: pointer; z-index: 10; border-radius: 50%; }
+        .arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.7); border: none; width: 40px; height: 40px; cursor: pointer; z-index: 10; border-radius: 50%; font-size: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .arrow-left { left: 10px; } .arrow-right { right: 10px; }
 
         .modal-info { padding: 20px; text-align: center; }
-        .whatsapp-btn { display: block; background: var(--dark); color: var(--gold); text-decoration: none; padding: 15px; border: 1px solid var(--gold); font-weight: bold; margin-top: 15px; }
+        .modal-info h2 { font-size: 1.3rem; margin: 0 0 5px; text-transform: uppercase; }
+        .modal-info .modal-sku { color: #888; font-size: 0.8rem; margin-bottom: 15px; display: block; }
+        .modal-info .modal-price { font-size: 1.8rem; font-weight: 900; margin: 15px 0; color: var(--dark); }
+        .beden-box { background: #fdf8ef; padding: 10px; border-radius: 4px; border: 1px dashed var(--gold); margin-bottom: 20px; font-size: 0.9rem; }
+        .whatsapp-btn { display: block; background: var(--dark); color: var(--gold); text-decoration: none; padding: 15px; border: 1px solid var(--gold); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
 
         @media (min-width: 768px) { .products-grid { grid-template-columns: repeat(4, 1fr); } }
     </style>
@@ -47,52 +50,99 @@
 <div class="container">
     <div class="products-grid">
         
-        <div class="mini-card" onclick="openProduct('modal133sf')">
-            <img src="https://i.ibb.co/7JDZ4h25/4-166.jpg" alt="133sf">
+        <div class="mini-card" onclick="openProduct('m115')">
+            <img src="https://i.ibb.co/qYWWMSYW/4-115.jpg">
             <h3>Ceket & Pantolon Takım</h3>
+            <span class="sku">Kod: WD-115</span>
             <div class="price">2.415 TL</div>
-            <span style="font-size: 0.7rem; color: #999;">Kodu: 133sf</span>
         </div>
 
+        <div class="mini-card" onclick="openProduct('m173')">
+            <img src="https://i.ibb.co/LDC7kBvF/4-173.jpg">
+            <h3>Şık İkili Takım</h3>
+            <span class="sku">Kod: WD-173</span>
+            <div class="price">2.415 TL</div>
         </div>
+
+        <div class="mini-card" onclick="openProduct('m161')">
+            <img src="https://i.ibb.co/H18kNHQ/4-161.jpg">
+            <h3>Klasik Takım</h3>
+            <span class="sku">Kod: WD-161</span>
+            <div class="price">2.415 TL</div>
+        </div>
+
+        <div class="mini-card" onclick="openProduct('m133')">
+            <img src="https://i.ibb.co/4R9LjKXn/4-133.jpg">
+            <h3>Modern Takım</h3>
+            <span class="sku">Kod: WD-133</span>
+            <div class="price">2.415 TL</div>
+        </div>
+
+        <div class="mini-card" onclick="openProduct('m151')">
+            <img src="https://i.ibb.co/pBVygVQw/4-151.jpg">
+            <h3>Zarif Takım</h3>
+            <span class="sku">Kod: WD-151</span>
+            <div class="price">2.415 TL</div>
+        </div>
+
+        <div class="mini-card" onclick="openProduct('m534')">
+            <img src="https://i.ibb.co/99jbtRpJ/5-34.jpg">
+            <h3>Premium Takım</h3>
+            <span class="sku">Kod: WD-534</span>
+            <div class="price">2.590 TL</div>
+        </div>
+
+        <div class="mini-card" onclick="openProduct('m538')">
+            <img src="https://i.ibb.co/h1DF3C6C/5-38.jpg">
+            <h3>Lüks Takım</h3>
+            <span class="sku">Kod: WD-538</span>
+            <div class="price">2.590 TL</div>
+        </div>
+
+        <div class="mini-card" onclick="openProduct('m551')">
+            <img src="https://i.ibb.co/HmY69zF/5-51.jpg">
+            <h3>Özel Kesim Takım</h3>
+            <span class="sku">Kod: WD-551</span>
+            <div class="price">2.610 TL</div>
+        </div>
+
+        <div class="mini-card" onclick="openProduct('m193')">
+            <img src="https://i.ibb.co/q3sCJvLq/4-193.jpg">
+            <h3>Şık Blazer Takım</h3>
+            <span class="sku">Kod: WD-193</span>
+            <div class="price">2.300 TL</div>
+        </div>
+
+    </div>
 </div>
 
-<div id="modal133sf" class="modal">
+<div id="m115" class="modal">
     <div class="modal-content">
-        <span class="close-modal" onclick="closeProduct('modal133sf')">&times;</span>
-        
+        <span class="close-modal" onclick="closeProduct('m115')">&times;</span>
         <div class="gallery-container">
             <button class="arrow arrow-left" onclick="scrollGal(this, -1)">&#10094;</button>
             <div class="image-gallery">
-                <img src="https://i.ibb.co/7JDZ4h25/4-166.jpg">
-                <img src="https://i.ibb.co/8GgV1vx/4-169.jpg">
-                <img src="https://i.ibb.co/whx3jpCK/4-168.jpg">
-                <img src="https://i.ibb.co/r2r4Ttk4/4-167.jpg">
-                <img src="https://i.ibb.co/Q7MMTdb3/4-170.jpg">
+                <img src="https://i.ibb.co/hFsFHQz0/4-195.jpg">
+                <img src="https://i.ibb.co/QvF8G9cy/4-194.jpg">
+                <img src="https://i.ibb.co/qYWWMSYW/4-115.jpg">
+                <img src="https://i.ibb.co/zW0jcR9T/4-114.jpg">
+                <img src="https://i.ibb.co/2YWTqPVX/4-111.jpg">
+                <img src="https://i.ibb.co/dsZWkCgK/4-113.jpg">
+                <img src="https://i.ibb.co/kgCm2zQD/4-112.jpg">
             </div>
             <button class="arrow arrow-right" onclick="scrollGal(this, 1)">&#10095;</button>
         </div>
-
         <div class="modal-info">
             <h2>Ceket & Pantolon Takım</h2>
-            <p style="color: #888;">Ürün Kodu: 133sf</p>
-            <p><b>Bedenler:</b> S - M - L - XL</p>
-            <div style="font-size: 1.5rem; font-weight: bold;">2.415 TL</div>
-            <a href="https://wa.me/905537853944?text=Merhaba, 133sf siparişi vermek istiyorum." class="whatsapp-btn">WHATSAPP İLE SİPARİŞ VER</a>
+            <span class="modal-sku">Ürün Kodu: WD-115</span>
+            <div class="beden-box"><b>Bedenler:</b> S - M - L - XL</div>
+            <div class="modal-price">2.415 TL</div>
+            <a href="https://wa.me/905537853944?text=Merhaba, WD-115 kodlu takımı sipariş etmek istiyorum." class="whatsapp-btn">Sipariş Ver</a>
         </div>
     </div>
 </div>
 
-<script>
-    function openProduct(id) { document.getElementById(id).style.display = "block"; document.body.style.overflow = "hidden"; }
-    function closeProduct(id) { document.getElementById(id).style.display = "none"; document.body.style.overflow = "auto"; }
-    function scrollGal(btn, dir) {
-        const gal = btn.parentElement.querySelector('.image-gallery');
-        gal.scrollBy({ left: dir * gal.clientWidth, behavior: 'smooth' });
-    }
-    // إغلاق النافذة عند الضغط خارجها
-    window.onclick = function(event) { if (event.target.className === 'modal') { event.target.style.display = "none"; document.body.style.overflow = "auto"; } }
-</script>
-
-</body>
-</html>
+<div id="m173" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeProduct('m173')">&times;</span>
+        <div class="gallery-container">
