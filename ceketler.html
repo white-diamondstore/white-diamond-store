@@ -6,40 +6,60 @@
     <title>Ceket Koleksiyonu | White Diamond</title>
     <style>
         :root { --gold: #c5a059; --dark: #121212; }
-        body { font-family: 'Poppins', sans-serif; margin: 0; background: #f4f4f4; color: var(--dark); }
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: #f9f9f9; color: var(--dark); }
         
-        nav { background: var(--dark); padding: 15px; text-align: center; }
-        .back-btn { color: var(--gold); text-decoration: none; font-weight: bold; font-size: 0.9rem; border: 1px solid var(--gold); padding: 5px 15px; text-transform: uppercase; }
+        nav { background: var(--dark); padding: 15px; text-align: center; position: sticky; top: 0; z-index: 1000; }
+        .back-btn { color: var(--gold); text-decoration: none; font-weight: bold; font-size: 0.8rem; border: 1px solid var(--gold); padding: 5px 12px; text-transform: uppercase; }
 
-        .header-title { text-align: center; padding: 40px 20px; background: white; margin-bottom: 30px; }
-        .header-title h1 { margin: 0; font-size: 2rem; border-bottom: 2px solid var(--gold); display: inline-block; text-transform: uppercase; }
+        .header-title { text-align: center; padding: 20px 10px; background: white; }
+        .header-title h1 { margin: 0; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        .container { max-width: 1200px; margin: auto; padding: 0 15px; }
+        .container { padding: 10px; }
 
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .product-card { background: white; border: 1px solid #ddd; overflow: hidden; transition: 0.3s; }
+        /* تعديل السطر ليكون فيه 2 موديلات */
+        .products-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); /* جوج فكل سطر */
+            gap: 10px; 
+        }
+
+        .product-card { background: white; border: 1px solid #eee; display: flex; flex-direction: column; position: relative; }
         
-        /* Gallery System (Swipe) */
-        .image-gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; background: #eee; }
-        .image-gallery img { flex: 0 0 100%; scroll-snap-align: start; height: 500px; object-fit: cover; }
+        /* ألبوم الصور مع الأسهم */
+        .gallery-container { position: relative; width: 100%; height: 280px; overflow: hidden; }
+        .image-gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; height: 100%; scroll-behavior: smooth; }
+        .image-gallery img { flex: 0 0 100%; scroll-snap-align: start; width: 100%; height: 100%; object-fit: cover; }
         .image-gallery::-webkit-scrollbar { display: none; }
 
-        .product-info { padding: 25px; text-align: center; }
-        .product-name { font-size: 1.4rem; font-weight: 700; margin: 10px 0; text-transform: uppercase; }
-        .description { color: #c5a059; font-weight: bold; margin-bottom: 10px; font-size: 1.1rem; }
-        .beden { color: #666; font-size: 1rem; margin-bottom: 15px; }
-        .price { font-size: 1.8rem; font-weight: 800; color: #000; margin-bottom: 20px; }
+        /* الأسهم فوق الصورة */
+        .arrow { 
+            position: absolute; top: 50%; transform: translateY(-50%); 
+            background: rgba(255,255,255,0.7); color: #000; border: none; 
+            padding: 5px 8px; cursor: pointer; font-size: 18px; z-index: 10;
+            border-radius: 50%;
+        }
+        .arrow-left { left: 5px; }
+        .arrow-right { right: 5px; }
+
+        .product-info { padding: 10px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .product-name { font-size: 0.9rem; font-weight: 700; margin: 5px 0; text-transform: uppercase; height: 35px; overflow: hidden; }
+        .description { color: var(--gold); font-size: 0.75rem; font-weight: bold; margin-bottom: 5px; }
+        .beden { color: #888; font-size: 0.7rem; margin-bottom: 8px; }
+        .price { font-size: 1.1rem; font-weight: 800; color: #000; margin-bottom: 10px; }
 
         .whatsapp-btn { 
-            display: block; background: var(--dark); color: var(--gold); 
-            text-decoration: none; padding: 15px; border: 1px solid var(--gold);
-            font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
+            background: var(--dark); color: var(--gold); 
+            text-decoration: none; padding: 10px 5px; border: 1px solid var(--gold);
+            font-weight: bold; font-size: 0.75rem; text-transform: uppercase;
         }
-        .whatsapp-btn:hover { background: var(--gold); color: white; }
-        
-        .swipe-info { font-size: 0.8rem; color: #aaa; margin: 8px 0; font-style: italic; }
 
-        footer { text-align: center; padding: 40px; color: #888; font-size: 0.9rem; }
+        footer { text-align: center; padding: 30px; color: #888; font-size: 0.8rem; }
+
+        /* للمناظر الكبيرة (PC) يمكننا جعلها 3 أو 4 */
+        @media (min-width: 768px) {
+            .products-grid { grid-template-columns: repeat(4, 1fr); }
+            .gallery-container { height: 400px; }
+        }
     </style>
 </head>
 <body>
@@ -49,40 +69,42 @@
     </nav>
 
     <div class="header-title">
-        <h1>Kadın Ceket Koleksiyonu</h1>
-        <p>Premium İstanbul Tasarımları</p>
+        <h1>Ceket Koleksiyonu</h1>
     </div>
 
     <div class="container">
         <div class="products-grid">
 
             <div class="product-card">
-                <div class="image-gallery">
-                    <img src="https://i.ibb.co/7JDZ4h25/4-166.jpg" alt="Takım Model 1">
-                    <img src="https://i.ibb.co/8GgV1vx/4-169.jpg" alt="Takım Model 2">
-                    <img src="https://i.ibb.co/whx3jpCK/4-168.jpg" alt="Takım Model 3">
-                    <img src="https://i.ibb.co/r2r4Ttk4/4-167.jpg" alt="Takım Model 4">
-                    <img src="https://i.ibb.co/Q7MMTdb3/4-170.jpg" alt="Takım Model 5">
+                <div class="gallery-container">
+                    <button class="arrow arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
+                    <div class="image-gallery">
+                        <img src="https://i.ibb.co/7JDZ4h25/4-166.jpg">
+                        <img src="https://i.ibb.co/8GgV1vx/4-169.jpg">
+                        <img src="https://i.ibb.co/whx3jpCK/4-168.jpg">
+                    </div>
+                    <button class="arrow arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
                 </div>
-                <div class="swipe-info">← Fotoğraflar için kaydırın →</div>
                 
                 <div class="product-info">
-                    <h3 class="product-name">Şık Ceket & Pantolon Takım</h3>
-                    <div class="description">Özel Tasarım - İkili Takım</div>
-                    <p class="beden"><b>Bedenler:</b> S - M - L - XL</p>
+                    <h3 class="product-name">Ceket & Pantolon Takım</h3>
+                    <div class="description">İkili Takım</div>
+                    <p class="beden">S - M - L - XL</p>
                     <div class="price">2.415 TL</div>
-                    
-                    <a href="https://wa.me/905537853944?text=Merhaba, Ceket ve Pantolon Takımı (S-M-L-XL) hakkında bilgi almak istiyorum." class="whatsapp-btn">
-                        WhatsApp İle Sipariş Ver
-                    </a>
+                    <a href="https://wa.me/905537853944" class="whatsapp-btn">Sipariş Ver</a>
                 </div>
             </div>
+
             </div>
     </div>
 
-    <footer>
-        &copy; 2026 White Diamond Store | Istanbul
-    </footer>
+    <script>
+        function scrollGallery(btn, direction) {
+            const gallery = btn.parentElement.querySelector('.image-gallery');
+            const scrollAmount = gallery.clientWidth;
+            gallery.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        }
+    </script>
 
 </body>
 </html>
