@@ -38,7 +38,7 @@
         .beden-box { background: #fdf8ef; padding: 10px; border-radius: 4px; border: 1px dashed var(--gold); margin-bottom: 20px; font-size: 0.9rem; color: #666; }
         .whatsapp-btn { display: block; background: var(--dark); color: var(--gold); text-decoration: none; padding: 15px; border: 1px solid var(--gold); font-weight: bold; text-transform: uppercase; }
 
-        @media (min-width: 768px) { .products-grid { grid-template-columns: repeat(4, 1fr); } }
+        @media (min-width: 768px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
     </style>
 </head>
 <body>
@@ -52,13 +52,6 @@
             <img src="https://i.ibb.co/qLhDV9mz/10-60.jpg"> 
             <h3>Şık Tasarım Yelek</h3>
             <span class="sku">Kod: WD-V60</span>
-            <div class="price">1.950 TL</div>
-        </div>
-
-        <div class="mini-card" onclick="openProduct('v2')">
-            <img src="https://i.ibb.co/pjDQGc03/10-6.jpg"> 
-            <h3>Klasik Yelek Modeli</h3>
-            <span class="sku">Kod: WD-V06</span>
             <div class="price">1.950 TL</div>
         </div>
 
@@ -99,30 +92,6 @@
             <div class="beden-box"><b>Bedenler:</b> S - M - L - XL</div>
             <div class="modal-price">1.950 TL</div>
             <a href="https://wa.me/905537853944?text=Merhaba, WD-V60 kodlu yeleği sipariş etmek istiyorum." class="whatsapp-btn">Sipariş Ver</a>
-        </div>
-    </div>
-</div>
-
-<div id="v2" class="modal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeProduct('v2')">&times;</span>
-        <div class="gallery-container">
-            <button class="arrow arrow-left" onclick="scrollGal(this, -1)">&#10094;</button>
-            <div class="image-gallery">
-                <img src="https://i.ibb.co/pjDQGc03/10-6.jpg">
-                <img src="https://i.ibb.co/JjQ9pLvt/10-55.jpg">
-                <img src="https://i.ibb.co/DfxzpyZr/10-53.jpg">
-                <img src="https://i.ibb.co/qMWgsYSx/10-52.jpg">
-                <img src="https://i.ibb.co/9kRxhmHZ/10-54.jpg">
-            </div>
-            <button class="arrow arrow-right" onclick="scrollGal(this, 1)">&#10095;</button>
-        </div>
-        <div class="modal-info">
-            <h2>Klasik Yelek Modeli</h2>
-            <span class="modal-sku">Ürün Kodu: WD-V06</span>
-            <div class="beden-box"><b>Bedenler:</b> S - M - L - XL</div>
-            <div class="modal-price">1.950 TL</div>
-            <a href="https://wa.me/905537853944?text=Merhaba, WD-V06 kodlu yeleği sipariş etmek istiyorum." class="whatsapp-btn">Sipariş Ver</a>
         </div>
     </div>
 </div>
@@ -187,12 +156,6 @@
     function scrollGal(btn, dir) {
         const gal = btn.parentElement.querySelector('.image-gallery');
         gal.scrollBy({ left: dir * gal.clientWidth, behavior: 'smooth' });
-    }
-    window.onclick = function(event) {
-        if (event.target.className === 'modal') {
-            event.target.style.display = "none";
-            document.body.style.overflow = "auto";
-        }
     }
 </script>
 
